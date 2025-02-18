@@ -1,20 +1,40 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import appStore from '../utils/appStore'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../utils/constants'
+import axios from 'axios'
+import { removeUser } from '../utils/userSlice'
 
 const Navbar = () => {
-
+  const dispatch = useDispatch();
   const user = useSelector((store)=>store.user);
-     
-  console.log(user);
+  const navigate = useNavigate();
+  
+  
+ //this removes cookie from user's browser
+ const handleLogout = async()=>{
+  try{
+  const logOut = await axios.post(BASE_URL + '/logout',{},{withCredentials:true});
+  //this removes info from userSlice
+  dispatch(removeUser());
+  //navigate to login page
+    navigate("/login");
+
+  }catch(err){
+    console.log(err);
+  }
+ }
+  
+ 
+  // console.log(user);
 
   return (
     <div>
       
       <div className="navbar bg-base-300">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl">🧑‍💻DevTinder</a>
+    <Link to="/feed" className="btn btn-ghost text-xl">🧑‍💻DevTinder</Link>
   </div>
   <div className="flex-none gap-2 mx-5">
     <div className="form-control">
@@ -36,13 +56,13 @@ const Navbar = () => {
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         <li>
-          <a className="justify-between">
+          <Link to="/profile" className="justify-between">
             Profile
             <span className="badge">New</span>
-          </a>
+          </Link>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><Link onClick={handleLogout}>Logout</Link></li>
       </ul>
     </div> )}
     

@@ -9,6 +9,7 @@ import Logout from './Components/Logout'
 import { Provider } from 'react-redux'
 import appStore from './utils/appStore'
 import Feed from './Components/Feed'
+import ErrorPage from './Components/ErrorPage'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path='/logout'element={<Logout/>} />
       <Route path='/feed'element={<Feed/>} />
+      <Route path='/errorPage'element={<ErrorPage/>} />
       </Route>
     </Routes>
     </BrowserRouter>

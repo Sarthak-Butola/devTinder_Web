@@ -8,6 +8,8 @@ import { BASE_URL } from '../utils/constants';
 
 
 const Login = () => {
+  const[error, setError] = useState("");
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const Login = () => {
 
     }catch(err){
       console.log(err);
+      setError(err?.response?.data);
     }
     
   }
@@ -52,6 +55,9 @@ const Login = () => {
      </div>
   <input type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs" 
   onChange={(e)=>{setPassword(e.target.value)}} value={password} />
+
+  <p className='text-lg text-red-500 mt-2'> {error} </p>
+
   <div className="label">
   </div>
 </label>  
