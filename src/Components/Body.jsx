@@ -18,7 +18,7 @@ const Body = () => {
     try{
       if(user) return;
       const userData = await axios.get(BASE_URL + "/profile", {withCredentials:true});
-      console.log(userData.data);
+      // console.log(userData.data);
       //update the userSlice
       dispatch(addUser(userData.data));
   
