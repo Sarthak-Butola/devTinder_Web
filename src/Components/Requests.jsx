@@ -13,9 +13,9 @@ const Requests = () => {
     const fetchRequests = async ()=>{
         try{
             const res = await axios.get(BASE_URL + "/user/requests/received", {withCredentials:true});
-            console.log(res.data.data);
+            // console.log(res.data.data);
             //save requests data in requestSlice
-            // dispatch(addRequests(res.data.data));
+            dispatch(addRequests(res.data.data));
 
         }catch(err){
             console.log(err.response);

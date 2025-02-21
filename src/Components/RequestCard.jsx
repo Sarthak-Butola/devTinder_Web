@@ -40,7 +40,7 @@ const RequestCard = ({request}) => {
           <div className="card-actions">
             
     <button className="btn btn-primary" onClick={()=>{handleRequest("accepted",_id )}}>Accept</button>
-    <button className="btn btn-neutral">Reject</button>
+    <button className="btn btn-neutral" onClick={()=>{handleRequest("rejected",_id )}}>Reject</button>
 
           </div>
         </div>

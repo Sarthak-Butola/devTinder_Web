@@ -13,7 +13,7 @@ const Connections = () => {
     const fetchConnections = async()=>{
         try{
             const res = await axios.get(BASE_URL + "/connections", {withCredentials:true});
-            console.log(res.data);
+            // console.log(res.data);
             //adding connections info into connection slice in redux store
             dispatch(addConnections(res.data));
             
