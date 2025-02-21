@@ -10,6 +10,8 @@ import { Provider } from 'react-redux'
 import appStore from './utils/appStore'
 import Feed from './Components/Feed'
 import ErrorPage from './Components/ErrorPage'
+import Connections from './Components/Connections'
+import Requests from './Components/Requests'
 
 
 function App() {
@@ -27,13 +29,16 @@ function App() {
       <Route path='/logout'element={<Logout/>} />
       <Route path='/feed'element={<Feed/>} />
       <Route path='/errorPage'element={<ErrorPage/>} />
+      <Route path='/connections'element={<Connections/>} />
+      <Route path='/requests'element={<Requests/>} />
       </Route>
     </Routes>
     </BrowserRouter>
   
-  <p className="font-bold text-3xl underline text-red-400 ">
+  {/* <p className="font-bold text-3xl underline text-red-400 ">
       Hello World!
-      </p>
+      </p> */}
+      
       </Provider>
     </>
   )

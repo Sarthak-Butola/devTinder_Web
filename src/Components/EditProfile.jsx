@@ -16,6 +16,9 @@ const EditProfile = ({user})=> {
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
   const [skills, setSkills] = useState(user.skills);
   const [error, setError] = useState("");
+  const [toast, setToast] = useState(false);
+  
+  
 
   const userInfo = {firstName, lastName, age, photoUrl, gender, about, skills}  ;
 
@@ -35,6 +38,14 @@ const EditProfile = ({user})=> {
        ,{withCredentials:true});
     //updating redux store userSlice to get latest/updated data of the user
         dispatch(addUser(res.data.data));
+
+        //showing toast agter profile is updated
+        setToast(true);
+        //also removing this message after a few seconds
+        setTimeout(()=>{
+            setToast(false);
+        },3000)
+
         // console.log(res);
         
     }catch(err){
@@ -127,10 +138,22 @@ const EditProfile = ({user})=> {
 
 <p className='text-lg text-red-500 mt-2'> {error} </p>
   
+
+  
     <div className="card-actions py-2">
       <button className="btn btn-primary" onClick={saveProfile} >Save Profile</button>
     </div>
   </div>
+
+  {/* TOAST */}
+  {toast &&(
+  <div className="toast toast-top toast-center z-10">
+  <div className="alert alert-info ">
+    <span >Profile Updated successfully!! </span>
+  
+  </div>
+</div>
+)}
   
 </div>
 

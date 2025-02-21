@@ -4,7 +4,7 @@ import appStore from '../utils/appStore'
 import { Link, useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../utils/constants'
 import axios from 'axios'
-import { removeUser } from '../utils/userSlice'
+import { removeUser } from '../utils/userSlice' 
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -61,8 +61,10 @@ const Navbar = () => {
             <span className="badge">New</span>
           </Link>
         </li>
-        <li><a>Settings</a></li>
+        <li><Link to={'/connections'}>Connections</Link></li>
+        <li><Link to={"/requests"}>Requests</Link></li>
         <li><Link onClick={handleLogout}>Logout</Link></li>
+    
       </ul>
     </div> )}
     
