@@ -43,7 +43,7 @@ const Navbar = () => {
 
     {/* Only showing pic if present in the slice/ after userInfo retrieval from backend/DB */}
     {user && (<div className="dropdown dropdown-end flex">
-      <p className='my-2 pr-5'>Welcome {user.lastName} </p>
+      <p className='my-2 pr-5'>Welcome {user.firstName} </p>
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img

@@ -26,6 +26,9 @@ const Requests = () => {
         fetchRequests();
     },[])
 
+    if(!requests) return;
+    if(requests.length === 0) return <h1 className='font-bold text-3xl mt-2 text-red-600 '>No requests present.</h1>
+
   return (
     <>
     {requests && (

@@ -27,6 +27,8 @@ const Connections = () => {
         fetchConnections();
     },[])
 
+    if(!connections) return;
+    if(connections.length === 0) return <h1 className='font-bold text-3xl mt-2 text-red-600 '>No Connections</h1>
 
     // if(!connections) return;
     // if(Connections.length === 0)  <h1>No Connections</h1>
