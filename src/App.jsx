@@ -12,12 +12,13 @@ import Feed from './Components/Feed'
 import ErrorPage from './Components/ErrorPage'
 import Connections from './Components/Connections'
 import Requests from './Components/Requests'
-
+import SearchPage from './Components/SearchPage'
+import Chat from './Components/chat'
 
 function App() {
 
   return (
-    <>
+    <div data-theme="dark" className='min-h-screen'>
     <Provider store={appStore}>
     <BrowserRouter>
     <Routes>
@@ -31,7 +32,9 @@ function App() {
       <Route path='/errorPage'element={<ErrorPage/>} />
       <Route path='/connections'element={<Connections/>} />
       <Route path='/requests'element={<Requests/>} />
-      </Route>
+      <Route path='/searchPage'element={<SearchPage/>} />
+      <Route path='/chat/:targetUserId'element={<Chat/>} />
+    </Route>
     </Routes>
     </BrowserRouter>
   
@@ -40,7 +43,7 @@ function App() {
       </p> */}
       
       </Provider>
-    </>
+    </div>
   )
 }
 

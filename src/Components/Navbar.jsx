@@ -34,7 +34,7 @@ const Navbar = () => {
       
       <div className="navbar bg-base-300">
   <div className="flex-1">
-    <Link to="/feed" className="btn btn-ghost text-xl">🧑‍💻DevTinder</Link>
+    <Link to="/feed" className="btn btn-ghost text-xl">💻DevTinder</Link>
   </div>
   <div className="flex-none gap-2 mx-5">
     <div className="form-control">
@@ -58,11 +58,18 @@ const Navbar = () => {
         <li>
           <Link to="/profile" className="justify-between">
             Profile
-            <span className="badge">New</span>
+            <span className="badge bg-slate-700">New</span>
           </Link>
         </li>
         <li><Link to={'/connections'}>Connections</Link></li>
         <li><Link to={"/requests"}>Requests</Link></li>
+        <li>
+          <Link to="/searchPage" className="justify-between">
+            Search
+            <span className="badge  bg-slate-700">Premium!</span>
+          </Link>
+        </li>
+        <li><Link to={"/feed"}>{"Find Devs " + " :)"}  </Link></li>
         <li><Link onClick={handleLogout}>Logout</Link></li>
     
       </ul>

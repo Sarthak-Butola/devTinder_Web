@@ -1,8 +1,14 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+===>DO THESE<===
+________________
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-> Make hitting Enter button perform the task like sending message, searching etc. ✔️
+-> Show/Hide PassWord dynamically. ✔️
+-> Auto scroll to the bottom of the chat. ✔️
+-> Show timestamps for messages sent/received.[DB need to have timestamps stored for this]
+-> Fixed chat bubbles being on same side for people with same name by comparing sender id's instead of sender names✔️
+->Delete User feature maybe..
+->
+->
+->

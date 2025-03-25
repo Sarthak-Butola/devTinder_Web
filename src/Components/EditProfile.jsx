@@ -56,12 +56,12 @@ const EditProfile = ({user})=> {
   }
 
   return (
-    <div className='flex justify-center '>
+    <div className='flex justify-center my-6  text-gray-400' >
       
-      <div className='flex justify-center mt-2 px-10'>
-      <div className="card w-96 shadow-xl bg-slate-300">
+      <div className='flex justify-center mt-2 px-10 mb-56'>
+      <div className="card w-96 shadow-xl bg-slate-700">
   <div className="card-body items-center text-center">
-    <h2 className="card-title">Edit Profile</h2>
+    <h2 className="card-title ">Edit Profile</h2>
 
     <label className="form-control w-full max-w-xs">
   <div className="label">
@@ -141,7 +141,7 @@ const EditProfile = ({user})=> {
 
   
     <div className="card-actions py-2">
-      <button className="btn btn-primary" onClick={saveProfile} >Save Profile</button>
+      <button className="btn btn-primary pt-0" onClick={saveProfile} >Save Profile</button>
     </div>
   </div>
 

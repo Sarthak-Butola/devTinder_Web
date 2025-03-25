@@ -25,9 +25,8 @@ const RequestCard = ({request}) => {
     const {firstName, lastName, age, gender, skills, about, photoUrl} = request.fromUserId;
     const {_id} = request;
   return (
-      <div className='p-2'>
-            
-            <div className="card card-side bg-slate-300 shadow-xl w-1/2 m-auto mt-2">
+      <div className='p-2  text-gray-400'>
+            <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2">
         <figure className='p-2'>
             <img className='rounded-full w-full h-40 '
             src={photoUrl ? photoUrl :defaultUserPhoto }
@@ -37,13 +36,16 @@ const RequestCard = ({request}) => {
           <h2 className="card-title">{firstName + " " + lastName}</h2>
           <p>{age + ", " + gender}</p>
           <p>{about}</p>
-          <div className="card-actions">
+          
+        </div>
+
+        <div className="card-actions flex-col   justify-center mr-10 ">
             
-    <button className="btn btn-primary" onClick={()=>{handleRequest("accepted",_id )}}>Accept</button>
-    <button className="btn btn-neutral" onClick={()=>{handleRequest("rejected",_id )}}>Reject</button>
+    <button className="btn btn-secondary w-full" onClick={()=>{handleRequest("accepted",_id )}}>Accept</button>
+    <button className="btn btn-primary w-full" onClick={()=>{handleRequest("rejected",_id )}}>Reject</button>
 
           </div>
-        </div>
+
       </div>
           </div>
   )

@@ -27,13 +27,13 @@ const UserCard = ({user}) => {
     user && (
     <div>
          
-<div className="card card-compact w-96 shadow-xl m-auto my-10 bg-slate-200">
-<figure>
-  <img className='p-2 '
+<div className="card card-compact w-96 shadow-xl m-auto my-10 bg-slate-700 ">
+<figure className='h-48' >  
+  <img className='p-2 rounded-xl max-w-full max-h-full '
     src={photoUrl? photoUrl : defaultUserPhoto}
     alt="UserImage" />
 </figure>
-<div className="card-body">
+<div className="card-body text-gray-400">
   <h2 className="card-title">{firstName + " " + lastName}</h2>
   <p>{age + ", " + gender}</p>
   <p>{about}</p>

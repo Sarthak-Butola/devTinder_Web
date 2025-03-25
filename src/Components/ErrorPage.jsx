@@ -3,8 +3,8 @@ import React from 'react'
 
 const ErrorPage = () => {
   return (
-    <div>
-      <p> Oops an error occured :/ </p>
+    <div className='flex justify-center mt-10'>
+      <p> Oops an error occured : / Try Reloading!! </p>
       
     </div>
   )

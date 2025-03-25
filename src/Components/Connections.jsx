@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addConnections } from '../utils/connectionslice'
 import UserCard from './userCard'
 import ConnectionCard from './ConnectionCard'
+import ConnectionsAccordion from './ConnectionsAccordion'
 
 const Connections = () => {
     const dispatch = useDispatch();
@@ -27,14 +28,16 @@ const Connections = () => {
         fetchConnections();
     },[])
 
-    if(!connections) return;
+    
+
+    if(!connections) return <ConnectionsAccordion/>;
     if(connections.length === 0) return <h1 className='font-bold text-3xl mt-2 text-red-600 '>No Connections</h1>
 
     // if(!connections) return;
     // if(Connections.length === 0)  <h1>No Connections</h1>
 
   return (
-    <>
+    <div >
     <div className='flex justify-center text-2xl font-bold mt-2'>
        <p>Connections: </p>
     </div>
@@ -44,7 +47,7 @@ const Connections = () => {
        )
        }
 
-    </>
+    </div>
   )
 }
 
