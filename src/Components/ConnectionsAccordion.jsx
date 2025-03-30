@@ -8,10 +8,10 @@ const ConnectionsAccordion = () => {
        <p>Connections: </p>
     </header>
 
-      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-ping duration-50 "></div>
-      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-ping duration-50 "></div>
-      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-ping duration-50 "></div>
-      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-ping duration-50 "></div>
+      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-pulse duration-50 "></div>
+      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-pulse duration-50 "></div>
+      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-pulse duration-50 "></div>
+      <div className="card card-side bg-slate-700 shadow-xl w-1/2 m-auto mt-2 mb-4 h-32 animate-pulse duration-50 "></div>
 
     </div>
   )

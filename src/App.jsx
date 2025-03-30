@@ -13,7 +13,8 @@ import ErrorPage from './Components/ErrorPage'
 import Connections from './Components/Connections'
 import Requests from './Components/Requests'
 import SearchPage from './Components/SearchPage'
-import Chat from './Components/chat'
+import Chat from './Components/Chat'
+import DeleteProfile from './Components/DeleteProfile'
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Body />}>
       {/* children Routes */}
-
+      
       <Route path='/login' element={<Login/>} />
       <Route path="/profile" element={<Profile />} />
       <Route path='/logout'element={<Logout/>} />
@@ -34,6 +35,7 @@ function App() {
       <Route path='/requests'element={<Requests/>} />
       <Route path='/searchPage'element={<SearchPage/>} />
       <Route path='/chat/:targetUserId'element={<Chat/>} />
+      <Route path='/deleteProfile'element={<DeleteProfile/>} />
     </Route>
     </Routes>
     </BrowserRouter>

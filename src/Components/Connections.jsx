@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { addConnections } from '../utils/connectionslice'
-import UserCard from './userCard'
+// import UserCard from './userCard'
 import ConnectionCard from './ConnectionCard'
 import ConnectionsAccordion from './ConnectionsAccordion'
 
@@ -28,10 +28,8 @@ const Connections = () => {
         fetchConnections();
     },[])
 
-    
-
     if(!connections) return <ConnectionsAccordion/>;
-    if(connections.length === 0) return <h1 className='font-bold text-3xl mt-2 text-red-600 '>No Connections</h1>
+    if(connections.length === 0) return <h1 className='font-bold text-3xl mt-2 flex justify-center '>No Connections</h1>
 
     // if(!connections) return;
     // if(Connections.length === 0)  <h1>No Connections</h1>

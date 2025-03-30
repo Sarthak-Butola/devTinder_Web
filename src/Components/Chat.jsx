@@ -14,15 +14,30 @@ const Chat = () => {
   const {targetUserId} = useParams();
   // console.log(targetUserId);
   const [messages, setMessages] = useState([]);
+  const [photoUrl, setPhotoUrl] = useState(" ")
   const [newMessage, setNewMessage] = useState("");
   const [time,setTime] = useState("");
   const [date, setDate] = useState("");
+  const[chatMember, setChatMember] = useState(" ");
+  
 
   let handleKeyDown = (event) => {
     if(event.key === 'Enter'){
     sendMessage();
     }
   }
+
+  const fetchChatMember = async()=>{
+      let chatReceiver = await axios.get(BASE_URL + "/search/" + "chatMember/" + targetUserId, {withCredentials:true});
+          // console.log(chatReceiver);
+
+          const {firstName, lastName, photoUrl} = chatReceiver?.data;
+          
+          setChatMember(firstName + " " + lastName);
+          setPhotoUrl(photoUrl);
+  }
+  
+
 
   const fetchMessages = async()=>{
     const chat = await axios.get(BASE_URL + "/chat/" + targetUserId ,{withCredentials: true,
@@ -42,9 +57,15 @@ const Chat = () => {
     setMessages(chatMessages);
   };
 
+  //FETCH MESSAGES FROM THE DB AS SOON AS CHAT COMPONENT LOADS
   useEffect(()=>{
     fetchMessages();
+    fetchChatMember();
   },[])
+
+  useEffect(()=>{
+    // axios.get(BASE_URL + "")
+  })
 
   useEffect(()=>{
     if (scrollContainer.current) {
@@ -89,7 +110,7 @@ useEffect(()=>{
 
   return (
     <div className='w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col rounded-lg '>
-      <h1 className='p-5 border-b border-gray-600 font-bold text-2xl'>Chat</h1>
+      <h1 className='p-5 border-b border-gray-600 font-bold text-2xl'>{"Chat with : " + chatMember } </h1>
 
       <div className='flex overflow-y-auto p-5 flex-col h-lvh'
        ref={scrollContainer} >
@@ -97,9 +118,9 @@ useEffect(()=>{
       {messages && messages.map((msg,index)=>{
         return(
           //THESE ?ARE REMOVING ERROR  | IN CONSOLE |  
-        <div className={"chat " + (user?._id === msg?._id ? "chat-end" : "chat-start") } key={index}>
+        <div className={"chat " + (user?.firstName === msg?.firstName ? "chat-end" : "chat-start") } key={index}>
           <div  className="chat-header pt-2">
-          {msg.firstName + " " + msg.lastName}
+          {msg.firstName }
           {/* <time className="text-xs opacity-50">{}</time> */}
         </div>
         <div className="chat-bubble ">{msg.text} </div>
