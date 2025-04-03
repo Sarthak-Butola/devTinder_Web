@@ -16,6 +16,7 @@ import SearchPage from './Components/SearchPage'
 import Chat from './Components/Chat'
 import DeleteProfile from './Components/DeleteProfile'
 
+
 function App() {
 
   return (

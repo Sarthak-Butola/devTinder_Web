@@ -44,11 +44,11 @@ const UserCard = ({ user }) => {
               alt="UserImage"
             />
           </figure>
-          <div className="card-body text-gray-400 overflow">
+          <div className="card-body text-gray-400 ">
             <h2 className="card-title">{firstName + ' ' + lastName}</h2>
             <p>{age + ', ' + gender}</p>
-            <p>{about}</p>
-            <p>skills: {skills}</p>
+           <p className='overflow-auto '>{about}</p>
+            <p className='overflow-auto '>skills: {skills}</p>
             <div className="card-actions justify-evenly ">
               <button
                 className="btn btn-primary "

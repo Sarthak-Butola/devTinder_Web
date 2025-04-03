@@ -101,7 +101,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link to="/connections" className="text-white py-2 px-4 rounded-md transition-transform duration-300 hover:bg-slate-600 hover:scale-105" onClick={closeSidebar}>Connections</Link>
+              <Link to="/connections" className="text-white py-2 px-4 rounded-md transition-transform duration-300 hover:bg-slate-600 hover:scale-105" onClick={closeSidebar}>Connections & Chat</Link>
             </li>
             <li>
               <Link to="/requests" className="text-white py-2 px-4 rounded-md transition-transform duration-300 hover:bg-slate-600 hover:scale-105" onClick={closeSidebar}>Requests</Link>

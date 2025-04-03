@@ -118,7 +118,7 @@ useEffect(()=>{
       {messages && messages.map((msg,index)=>{
         return(
           //THESE ?ARE REMOVING ERROR  | IN CONSOLE |  
-        <div className={"chat " + (user?.firstName === msg?.firstName ? "chat-end" : "chat-start") } key={index}>
+        <div className={"chat " + (user?.firstName  === msg?.firstName ? "chat-end" : "chat-start") } key={index}>
           <div  className="chat-header pt-2">
           {msg.firstName }
           {/* <time className="text-xs opacity-50">{}</time> */}
