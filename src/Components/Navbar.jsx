@@ -47,7 +47,7 @@ const Navbar = () => {
 
         <div className="flex-none gap-2 mx-5">
         {user &&
-          <p className="text-white">Welcome {user?.firstName}</p>
+          <p className="text-white">Hello, {user?.firstName}</p>
         }
 
   {user && 
@@ -97,6 +97,12 @@ const Navbar = () => {
             </li>
 
             <li>
+              <Link to="/searchPage" className="text-white py-2 px-4 rounded-md transition-transform duration-300 hover:bg-slate-600 hover:scale-105" onClick={closeSidebar}>
+                Search <span className="badge bg-slate-700">Premium!</span>
+              </Link>
+            </li>
+
+            <li>
               <Link to="/feed" className="text-white py-2 px-4 rounded-md transition-transform duration-300 hover:bg-slate-600 hover:scale-105" onClick={closeSidebar}>{"Find Devs :)"}</Link>
             </li>
 
@@ -106,11 +112,7 @@ const Navbar = () => {
             <li>
               <Link to="/requests" className="text-white py-2 px-4 rounded-md transition-transform duration-300 hover:bg-slate-600 hover:scale-105" onClick={closeSidebar}>Requests</Link>
             </li>
-            <li>
-              <Link to="/searchPage" className="text-white py-2 px-4 rounded-md transition-transform duration-300 hover:bg-slate-600 hover:scale-105" onClick={closeSidebar}>
-                Search <span className="badge bg-slate-700">Premium!</span>
-              </Link>
-            </li>
+           
           
             <li className=''>
               <Link to="/deleteProfile" className="text-red-500 py-2 px-4 rounded-md transition-transform duration-300 

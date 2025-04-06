@@ -110,7 +110,10 @@ useEffect(()=>{
 
   return (
     <div className='w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col rounded-lg '>
-      <h1 className='p-5 border-b border-gray-600 font-bold text-2xl'>{"Chat with : " + chatMember } </h1>
+      <div className='p-5 border-b border-gray-600 font-bold text-2xl flex px-5'>
+      <img src={photoUrl} className=" w-12 h-12 rounded-full object-cover mx-5" alt="User Profile" />
+        {chatMember}
+      </div>
 
       <div className='flex overflow-y-auto p-5 flex-col h-lvh'
        ref={scrollContainer} >
