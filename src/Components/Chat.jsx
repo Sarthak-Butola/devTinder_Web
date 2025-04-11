@@ -10,6 +10,7 @@ const Chat = () => {
   const user= useSelector((store)=>store.user);
   const userId = user?._id;
   const firstName = user?.firstName;
+  const lastName = user?.lastName
 
   const {targetUserId} = useParams();
   // console.log(targetUserId);
@@ -81,9 +82,9 @@ useEffect(()=>{
  //as soon as page loads, the socket connection is made and joinChat event is emitted.
  socket.emit("joinChat", {firstName, userId, targetUserId});
 
- socket.on("messageReceived", ({firstName, text})=>{
-  console.log(firstName + ": " + text);
-  setMessages((messages)=>[...messages, {firstName, text}]);
+ socket.on("messageReceived", ({firstName, text, lastName})=>{
+  // console.log(firstName + " " + lastName +": " + text);
+  setMessages((messages)=>[...messages, {firstName, text, lastName}]);
 
   // setTime(new Date().toLocaleTimeString());
   // setDate(new Date().toLocaleDateString());
@@ -102,7 +103,8 @@ useEffect(()=>{
     firstName,
     userId,
     targetUserId,
-    text:newMessage
+    text:newMessage,
+    lastName,
    }) 
 
    setNewMessage(" ");
@@ -121,9 +123,9 @@ useEffect(()=>{
       {messages && messages.map((msg,index)=>{
         return(
           //THESE ?ARE REMOVING ERROR  | IN CONSOLE |  
-        <div className={"chat " + (user?.firstName  === msg?.firstName ? "chat-end" : "chat-start") } key={index}>
+        <div className={"chat " + (user?.firstName + user?.lastName  === msg?.firstName + msg?.lastName ? "chat-end" : "chat-start") } key={index}>
           <div  className="chat-header pt-2">
-          {msg.firstName }
+          {msg.firstName + " " + msg.lastName}
           {/* <time className="text-xs opacity-50">{}</time> */}
         </div>
         <div className="chat-bubble ">{msg.text} </div>

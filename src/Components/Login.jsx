@@ -19,6 +19,14 @@ const Login = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  let loginByEnter = (e)=>{
+    if(e.key === 'Enter' && isLoginForm )
+      handleLogin();
+    
+      else if(e.key === 'Enter' && !isLoginForm)
+        handleSignUp();
+  }
+
   const handleSignUp = async() => {
     try {
       const res = await axios.post(BASE_URL + "/signup", { firstName, lastName, emailId, password }, { withCredentials: true });
@@ -79,7 +87,9 @@ const Login = () => {
               <span className="label-text">Password :</span>
             </div>
             <input type={showPassword ? "text" : "password"} placeholder="Type here" className="input input-bordered w-full max-w-xs pr-10" 
-              onChange={(e) => { setPassword(e.target.value) }} value={password} />
+              onChange={(e) => { setPassword(e.target.value) }} 
+              onKeyDown={loginByEnter}
+               value={password} />
 
             {/* Eye icon positioned at the right, vertically centered */}
             <p className='absolute right-3 top-3/4 transform -translate-y-1/2 cursor-pointer ' 

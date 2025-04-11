@@ -660,5 +660,12 @@ ________________
 -> Fixed chat bubbles being on same side for people with same name by comparing sender id's instead of sender names✔️
 ->Delete User feature maybe.. ✔️[yess done :) ] 
 ->Delete chats of deleted user also form the db
+->Fixed firstName name of user causing messages to be on same side of screen issue ✔️
+->Tie the chat bubble direction/position with user id of sender and logged in user for full foolproofness
+->
+->
+->
+->
+->
 ->
 ->
