@@ -8,10 +8,10 @@ import { BASE_URL } from '../utils/constants';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';  // Import FontAwesome icons
 
 const Login = () => {
-  const[error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const[error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [emailId, setEmailId] = useState("Goku@gmail.com");
   const [password, setPassword] = useState("Kamehameha@123");
@@ -117,4 +117,3 @@ const Login = () => {
 }
 
 export default Login;
-

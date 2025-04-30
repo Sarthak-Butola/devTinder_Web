@@ -37,6 +37,7 @@ function App() {
       <Route path='/searchPage'element={<SearchPage/>} />
       <Route path='/chat/:targetUserId'element={<Chat/>} />
       <Route path='/deleteProfile'element={<DeleteProfile/>} />
+      
     </Route>
     </Routes>
     </BrowserRouter>

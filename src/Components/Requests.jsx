@@ -30,7 +30,12 @@ const Requests = () => {
     if(requests.length === 0) return <h1 className='font-bold text-3xl mt-2 flex justify-center'>No requests currently...</h1>
 
   return (
+    
     <>
+    <div className='flex justify-center text-2xl font-bold mt-2'>
+       <p>Requests :</p>
+    </div>
+
     {requests && (
           requests.map((request)=> <RequestCard request={request} key={request.fromUserId._id} /> )  
     )}

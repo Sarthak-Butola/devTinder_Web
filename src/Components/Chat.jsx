@@ -4,6 +4,7 @@ import { createSocketConnection } from '../utils/socket';
 import { useSelector } from 'react-redux';
 import { BASE_URL } from '../utils/constants';
 import axios from 'axios';
+import { formatDate } from '../utils/dateFormatter';
 
 const Chat = () => {
   const scrollContainer = useRef(null);
@@ -43,16 +44,17 @@ const Chat = () => {
   const fetchMessages = async()=>{
     const chat = await axios.get(BASE_URL + "/chat/" + targetUserId ,{withCredentials: true,
     });
-    // console.log(chat);
+    console.log(chat);
 
     const chatMessages = chat?.data?.messages.map((msg)=>{
-      const{senderId, text} = msg;
+      const{senderId, text, createdAt} = msg;
       return{
         // PUSH SENDER ID TOO
         _id:senderId?._id,
         firstName:senderId?.firstName,
         lastName:senderId?.lastName,
         text,
+        createdAt,
       };
     });
     setMessages(chatMessages);
@@ -126,7 +128,7 @@ useEffect(()=>{
         <div className={"chat " + (user?.firstName + user?.lastName  === msg?.firstName + msg?.lastName ? "chat-end" : "chat-start") } key={index}>
           <div  className="chat-header pt-2">
           {msg.firstName + " " + msg.lastName}
-          {/* <time className="text-xs opacity-50">{}</time> */}
+          <time className="text-xs opacity-50 ml-2">{formatDate(msg?.createdAt)}</time>
         </div>
         <div className="chat-bubble ">{msg.text} </div>
         {/* <div className="chat-footer opacity-50">Delivered</div> */}
@@ -138,7 +140,7 @@ useEffect(()=>{
         <input type="text" className='flex-1 border border-gray-600 rounded p-2' 
         value={newMessage} 
           onChange={(e)=>{
-          setNewMessage(e.target.value);
+          setNewMessage(e.target.value);  
         }}
         onKeyDown={handleKeyDown}
        

@@ -15,6 +15,10 @@ const Navbar = () => {
   // this removes cookie from user's browser
   const handleLogout = async () => {
     try {
+      
+      const confirmed = window.confirm("Are you sure you want to logout?");
+      if (!confirmed) return;
+
       const logOut = await axios.post(BASE_URL + '/logout', {}, { withCredentials: true });
       // this removes info from userSlice
       dispatch(removeUser());
@@ -47,7 +51,7 @@ const Navbar = () => {
 
         <div className="flex-none gap-2 mx-5">
         {user &&
-          <p className="text-white">Hello, {user?.firstName}</p>
+          <p className="text-white">{user?.firstName}</p>
         }
 
   {user && 
