@@ -99,7 +99,7 @@ const EditProfile = ({user})=> {
                         {/* Gender */}
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text"> Gender </span>
+                                <span className="label-text"> Gender : [male, female or others] </span>
                             </div>
                             <input
                                 type="body"
@@ -113,7 +113,7 @@ const EditProfile = ({user})=> {
                         {/* About */}
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text"> About </span>
+                                <span className="label-text"> About [limit 90 characters] : </span>
                             </div>
                             <input
                                 type="text"

@@ -47,8 +47,14 @@ const UserCard = ({ user }) => {
           <div className="card-body text-gray-400 ">
             <h2 className="card-title">{firstName + ' ' + lastName}</h2>
             <p>{age + ', ' + gender}</p>
-           <p className='overflow-auto '>{about}</p>
-            <p className='overflow-auto '>skills: {skills}</p>
+           {/* <p className='overflow-auto '>{about}</p> */}
+           <p className="text-gray-400 text-sm">
+            {about.length > 90 ? `${about.slice(0, 90)}...` : about}
+           </p>
+            {/* <p className='overflow-auto '>skills: {skills}</p> */}
+            <p className="text-gray-400 text-sm"> 
+            {skills.length > 90 ? `${skills.slice(0, 90)}...` : skills}
+           </p>
             <div className="card-actions justify-evenly ">
               <button
                 className="btn btn-primary "

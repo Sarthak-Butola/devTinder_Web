@@ -9,8 +9,14 @@ const DeleteProfile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [deletionMessage,setDeletionMessage] = useState("");
+    const [error, setError] = useState("");
 
     const handleDeletion = async()=>{
+      const confirmed = window.confirm("Are you sure you want to delete your profile? This action is permanent.");
+      if (!confirmed) {
+          return; //User clicked "No"
+      }
+      try{
         let deleteProfile = await axios.patch(BASE_URL + "/profile/delete/User",
             {confirmation:deletionMessage},{withCredentials:true});
 
@@ -20,11 +26,18 @@ const DeleteProfile = () => {
             dispatch(removeUser());
             // navigate to login page
             navigate("/login");
+            alert("Account deleted successfully!")
+            }
+            else if(deleteProfile.data == "confirmation message is not correct"){
+              setError(deleteProfile.data);
             }
 
+        // CHECK WHAT ERROR IS LIKE ERR.MESSAGE OR WHAT AND SET ACCORDINGLY IN THE CATCH BLOCK
         console.log(deleteProfile);
-
-        // alert("Account deleted")
+          }catch(err){
+            console.log(err);
+             alert("Some error occured while trying to delete your account.Kindly try again later.");
+          }
     }
 
   return (
@@ -37,7 +50,7 @@ const DeleteProfile = () => {
         typing :
       </p>
       <span> "I WILLINGLY AGREE TO DELETE MY PROFILE PERMANENTLY" in the box below.</span>
-      <textarea className='mt-4 w-full p-3'
+      <textarea className='mt-4 w-full p-3 bg-black'
         placeholder="Type the message above to confirm"
         rows="4"
         cols="50"
@@ -47,12 +60,18 @@ const DeleteProfile = () => {
         
       ></textarea>
       <br />
+      {/* Error message if any */}
+      {error && 
+      <p className='text-2xl text-red-500'> [{error}] </p>
+      }
+      
       <button className="btn btn-outline hover:bg-red-600  mr-10 m-2"
       onClick={()=>{
         handleDeletion()
     }}
       >Confirm Deletion!</button>
-      <p className='text-red-500'>Please note that deleted Profile can never be recovered again!!</p>
+      
+      <p className='text-red-500 text-xl'>Please note that deleted Profile can never be recovered again!!</p>
     </div>
 
     </div>
