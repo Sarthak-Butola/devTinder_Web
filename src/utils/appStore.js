@@ -4,14 +4,15 @@ import feedReducer from "./feedSlice"
 import connectionReducer from "./connectionslice"
 import requestReducer from "./requestSlice"
 import searchReducer from "./searchSlice"
-
+import modeReducer from "./modeSlice"
 const appStore = configureStore({
     reducer:{
         user: userReducer,
         feed: feedReducer,
         connections: connectionReducer,
         requests:requestReducer,
-        searchUsers:searchReducer
+        searchUsers:searchReducer,
+        mode:modeReducer,
     },
 
 });

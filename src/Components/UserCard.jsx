@@ -2,30 +2,26 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { BASE_URL, defaultUserPhoto } from '../utils/constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeFeed } from '../utils/feedSlice';
 
 const UserCard = ({ user }) => {
   const { firstName, lastName, age, skills, photoUrl, gender, about, _id } = user;
   const dispatch = useDispatch();
 
-  // State to handle animation classes
   const [animationClass, setAnimationClass] = useState('');
+  const mode = useSelector((store) => store.mode);
 
   const handleUser = async (status, toUserId, direction) => {
     try {
-      const res = await axios.post(
+      await axios.post(
         BASE_URL + '/request/send/' + status + '/' + toUserId,
         {},
         { withCredentials: true }
       );
       dispatch(removeFeed(toUserId));
-
-      // Set animation class based on the direction
       setAnimationClass(direction);
-
-      // Optionally reset the animation after it completes
-      setTimeout(() => setAnimationClass(''), 300); // Adjust time as needed
+      setTimeout(() => setAnimationClass(''), 300);
     } catch (err) {
       console.log(err);
     }
@@ -33,43 +29,76 @@ const UserCard = ({ user }) => {
 
   return (
     user && (
-      <div
-        className={`transition-all duration-500 ease-in-out transform ${animationClass}`}
-      >
-        <div className="card card-compact w-96 shadow-xl m-auto my-10 bg-slate-700 ">
-          <figure className="h-48">
+      <div className={`transition-all duration-500 ease-in-out transform ${animationClass}`}>
+        <div
+          className={`w-96 m-auto my-14 rounded-2xl overflow-hidden duration-500 border border-gray-600 ${
+            mode
+              ? 'bg-slate-950 text-slate-100'
+              : 'bg-neutral-50 text-gray-900 shadow-md hover:shadow-lg'
+          }`}
+        >
+          <figure className="h-52 rounded-t-2xl overflow-hidden relative">
             <img
-              className="p-2 rounded-xl max-w-full max-h-full "
+              className="w-full h-full object-cover object-center"
               src={photoUrl ? photoUrl : defaultUserPhoto}
-              alt="UserImage"
-            />
+              alt={`${firstName}'s photo`}
+            />  
           </figure>
-          <div className="card-body text-gray-400 ">
-            <h2 className="card-title">{firstName + ' ' + lastName}</h2>
-            <p>{age + ', ' + gender}</p>
-           {/* <p className='overflow-auto '>{about}</p> */}
-           <p className="text-gray-400 text-sm">
-            {about.length > 90 ? `${about.slice(0, 90)}...` : about}
-           </p>
-            {/* <p className='overflow-auto '>skills: {skills}</p> */}
-            <p className="text-gray-400 text-sm"> 
-            {skills.length > 90 ? `${skills.slice(0, 90)}...` : skills}
-           </p>
-            <div className="card-actions justify-evenly ">
+
+          <div className="p-6 space-y-3">
+            
+            <h2
+  className={`text-2xl font-semibold tracking-wide ${
+    mode ? 'text-slate-100' : 'text-gray-900'    
+  }`}
+>
+  {firstName + ' ' + lastName}
+</h2>
+
+
+            <p
+              className={`text-base font-medium opacity-80 ${
+                mode ? 'text-slate-300' : 'text-gray-700'
+              }`}
+            >
+              {age + ', ' + gender}
+            </p>
+
+            <p
+              className={`text-sm font-medium uppercase tracking-wide opacity-70 ${
+                mode ? 'text-slate-400' : 'text-gray-600'
+              }`}
+            >
+              {about.length > 90 ? `${about.slice(0, 90)}...` : about}
+            </p>
+
+            <p
+              className={`text-sm font-medium uppercase tracking-wide opacity-70 ${
+                mode ? 'text-slate-400' : 'text-gray-600'
+              }`}
+            >
+              Skills: {skills.length > 60 ? `${skills.slice(0, 60)}...` : skills}
+            </p>
+
+            <div className="pt-4 flex justify-evenly gap-4">
               <button
-                className="btn btn-primary "
-                onClick={() => {
-                  handleUser('ignore', _id, '-translate-x-full opacity-0');
-                }}
+                className={`px-5 py-2 rounded-lg font-semibold transition-all duration-200 ${
+                  mode
+                    ? 'bg-transparent border border-red-400 text-red-400 hover:bg-red-500 hover:text-white'
+                    : 'bg-white border border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
+                }`}
+                onClick={() => handleUser('ignore', _id, '-translate-x-full opacity-0')}
               >
-                Ignored
+                Ignore
               </button>
 
               <button
-                className="btn btn-secondary"
-                onClick={() => {
-                  handleUser('interested', _id, 'translate-x-full opacity-0');
-                }}
+                className={`px-5 py-2 rounded-lg font-semibold transition-all duration-200 ${
+                  mode
+                    ? 'bg-transparent border border-green-400 text-green-400 hover:bg-green-500 hover:text-white'
+                    : 'bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white'
+                }`}
+                onClick={() => handleUser('interested', _id, 'translate-x-full opacity-0')}
               >
                 Interested
               </button>
