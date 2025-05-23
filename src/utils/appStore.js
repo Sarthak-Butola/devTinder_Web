@@ -1,7 +1,8 @@
-    import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice"
 import feedReducer from "./feedSlice"
-import connectionReducer from "./connectionslice"
+// connectionslice to connectionSlice
+import connectionReducer from "./connectionSlice"
 import requestReducer from "./requestSlice"
 import searchReducer from "./searchSlice"
 import modeReducer from "./modeSlice"
