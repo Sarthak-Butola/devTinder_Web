@@ -14,6 +14,7 @@ import Requests from './Components/Requests'
 import SearchPage from './Components/SearchPage'
 import Chat from './Components/Chat'
 import DeleteProfile from './Components/DeleteProfile'
+import Premium from './Components/Premium'
 
 function AppContent() {
   const mode = useSelector((store) => store.mode) // ✅ This works now!
@@ -33,6 +34,7 @@ function AppContent() {
             <Route path="/requests" element={<Requests />} />
             <Route path="/searchPage" element={<SearchPage />} />
             <Route path="/chat/:targetUserId" element={<Chat />} />
+            <Route path="/premium" element={<Premium />} />
             <Route path="/deleteProfile" element={<DeleteProfile />} />
           </Route>
         </Routes>

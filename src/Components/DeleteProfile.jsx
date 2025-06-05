@@ -5,6 +5,7 @@ import { BASE_URL } from '../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeUser } from '../utils/userSlice';
+import { removeUsers } from '../utils/searchSlice';
 
 const DeleteProfile = () => {
   const mode = useSelector((store) => store.mode);
@@ -31,6 +32,7 @@ const DeleteProfile = () => {
       // IF PROFILE HAS BEEN DELETED SUCCESSFULLY THEN SIMPLY LOGOUT
       if (deleteProfile.data === "User has been deleted successfully") {
         dispatch(removeUser());
+        dispatch(removeUsers());
         // navigate to login page
         navigate("/login");
         alert("Account deleted successfully!");

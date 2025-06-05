@@ -8,7 +8,9 @@ const connectionSlice = createSlice({
             return action.payload;
         },
         removeConnections:(state,action)=>{
-            return null;
+            // return null;
+            const newArray =  state.filter((connection)=>connection._id != action.payload) ;
+            return newArray;
         }
     }
 })

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { BASE_URL } from '../utils/constants'
 import { removeUser } from '../utils/userSlice'
 import { changeMode } from '../utils/modeSlice'
+import { removeUsers } from '../utils/searchSlice'
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Navbar = () => {
 
       await axios.post(BASE_URL + '/logout', {}, { withCredentials: true });
       dispatch(removeUser());
+      dispatch(removeUsers());
       navigate("/login");
     } catch (err) {
       console.log(err);

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BASE_URL } from '../utils/constants';
 import axios from 'axios';
 import { formatDate } from '../utils/dateFormatter';
-import { addConnections } from '../utils/connectionslice';
+import { addConnections } from '../utils/connectionSlice';
 
 const Chat = () => {
   const mode = useSelector((store)=>store.mode);
