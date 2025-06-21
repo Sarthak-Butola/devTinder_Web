@@ -5,25 +5,36 @@ import { BASE_URL, defaultUserPhoto } from '../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFeed } from '../utils/feedSlice';
 
+
 const UserCard = ({ user }) => {
   const { firstName, lastName, age, skills, photoUrl, gender, about, _id } = user;
   const dispatch = useDispatch();
+  const [toast, setToast] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("Sent connection request successfully..!!");
 
   const [animationClass, setAnimationClass] = useState('');
   const mode = useSelector((store) => store.mode);
 
   const handleUser = async (status, toUserId, direction) => {
     try {
-      await axios.post(
+      const res = await axios.post(
         BASE_URL + '/request/send/' + status + '/' + toUserId,
         {},
         { withCredentials: true }
       );
+      setToast(true);
+      setTimeout(() => setToast(false), 3000);
+
       dispatch(removeFeed(toUserId));
       setAnimationClass(direction);
       setTimeout(() => setAnimationClass(''), 300);
+
     } catch (err) {
       console.log(err);
+      //setting error msg and showing toast msg
+      setErrorMsg(err?.response?.data);
+      setToast(true);
+      setTimeout(() => setToast(false), 3000);
     }
   };
 
@@ -54,8 +65,6 @@ const UserCard = ({ user }) => {
 >
   {firstName + ' ' + lastName}
 </h2>
-
-
             <p
               className={`text-base font-medium opacity-80 ${
                 mode ? 'text-slate-300' : 'text-gray-700'
@@ -98,13 +107,22 @@ const UserCard = ({ user }) => {
                     ? 'bg-transparent border border-green-400 text-green-400 hover:bg-green-500 hover:text-white'
                     : 'bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white'
                 }`}
-                onClick={() => handleUser('interested', _id, 'translate-x-full opacity-0')}
+                onClick={() =>handleUser('interested', _id, 'translate-x-full opacity-0')}
               >
                 Interested
               </button>
             </div>
           </div>
         </div>
+
+        {toast && (
+          <div className="toast toast-top toast-center z-50">
+            <div className="alert alert-info">
+              <span>{errorMsg}</span>
+            </div>
+          </div>
+        )}
+
       </div>
     )
   );

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../utils/constants'
-import UserCard from './userCard';
+import UserCard from './UserCard';
 import { useDispatch, useSelector } from 'react-redux';
 import appStore from '../utils/appStore';
 import { addUsers } from '../utils/searchSlice';
@@ -21,7 +21,7 @@ const SearchPage = () => {
 
         }
         catch(err){
-            console.log(err.message);
+            console.log(err?.message);
         }
     }
 
