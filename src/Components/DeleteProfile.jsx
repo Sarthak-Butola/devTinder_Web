@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import React, { useState } from 'react';
-import { BASE_URL } from '../utils/constants';
+import { BASE_URL, BASE_URL1 } from '../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeUser } from '../utils/userSlice';
@@ -23,7 +23,7 @@ const DeleteProfile = () => {
     }
     try {
       let deleteProfile = await axios.patch(
-        BASE_URL + "/profile/delete/User",
+        BASE_URL1 + "/profile/delete/User",
         { confirmation: deletionMessage },
         { withCredentials: true }
       );

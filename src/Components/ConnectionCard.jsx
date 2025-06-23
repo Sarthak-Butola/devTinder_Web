@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BASE_URL, defaultUserPhoto } from '../utils/constants';
+import { BASE_URL, BASE_URL1, defaultUserPhoto } from '../utils/constants';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ const ConnectionCard = ({ connection }) => {
   const handleConfirm = async () => {
     try{
  const res = await axios.patch(
-      `${BASE_URL}/chat/unfriend/${_id}`,
+      `${BASE_URL1}/chat/unfriend/${_id}`,
       {},
       { withCredentials: true }
     );

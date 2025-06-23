@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BASE_URL, defaultUserPhoto } from '../utils/constants';
+import { BASE_URL, BASE_URL1, defaultUserPhoto } from '../utils/constants';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeRequests } from '../utils/requestSlice';
@@ -12,7 +12,7 @@ const RequestCard = ({ request }) => {
   const handleRequest = async (status, requestId) => {
     try {
       const res = await axios.post(
-        BASE_URL + "/request/review/" + status + "/" + requestId,
+        BASE_URL1 + "/request/review/" + status + "/" + requestId,
         {},
         { withCredentials: true }
       );

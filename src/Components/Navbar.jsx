@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { BASE_URL } from '../utils/constants'
+import { BASE_URL, BASE_URL1 } from '../utils/constants'
 import { removeUser } from '../utils/userSlice'
 import { changeMode } from '../utils/modeSlice'
 import { removeUsers } from '../utils/searchSlice'
@@ -21,7 +21,7 @@ const Navbar = () => {
       const confirmed = window.confirm("Are you sure you want to logout?");
       if (!confirmed) return;
 
-      await axios.post(BASE_URL + '/logout', {}, { withCredentials: true });
+      await axios.post(BASE_URL1 + '/logout', {}, { withCredentials: true });
       dispatch(removeUser());
       dispatch(removeUsers());
       navigate("/login");

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { BASE_URL } from '../utils/constants';
+import { BASE_URL, BASE_URL1 } from '../utils/constants';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFeed } from '../utils/feedSlice';
-import UserCard from './userCard';
+import UserCard from './UserCard';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -14,8 +14,8 @@ const Feed = () => {
       //if feed already present in store then no need to get feed again
       if(feed) return;
 
-    const res = await axios.get(BASE_URL + "/feed",{withCredentials:true});
-    dispatch(addFeed(res.data));
+    const res = await axios.get(BASE_URL1 + "/feed",{withCredentials:true});
+    dispatch(addFeed(res?.data));
     // console.log(res.data);
 
     }catch(err){

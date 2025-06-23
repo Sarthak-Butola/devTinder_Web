@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { BASE_URL } from '../utils/constants'
+import { BASE_URL, BASE_URL1 } from '../utils/constants'
 import UserCard from './UserCard';
 import { useDispatch, useSelector } from 'react-redux';
 import appStore from '../utils/appStore';
@@ -15,7 +15,7 @@ const SearchPage = () => {
 
     const handleSearch = async(firstName)=>{
         try{
-        let user = await axios.get(BASE_URL + "/search" + "/" + firstName ,{withCredentials:true});
+        let user = await axios.get(BASE_URL1 + "/search" + "/" + firstName ,{withCredentials:true});
         // console.log(user?.data);    
         dispatch(addUsers(user?.data));  
 

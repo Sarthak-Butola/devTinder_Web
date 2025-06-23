@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { createSocketConnection } from '../utils/socket';
 import { useDispatch, useSelector } from 'react-redux';
-import { BASE_URL } from '../utils/constants';
+import { BASE_URL, BASE_URL1 } from '../utils/constants';
 import axios from 'axios';
 import { formatDate } from '../utils/dateFormatter';
 import { addConnections } from '../utils/connectionSlice';
@@ -42,14 +42,14 @@ const Chat = () => {
   }
 
   const fetchChatMember = async()=>{
-      let chatReceiver = await axios.get(BASE_URL + "/search/" + "chatMember/" + targetUserId, {withCredentials:true});
+      let chatReceiver = await axios.get(BASE_URL1 + "/search/" + "chatMember/" + targetUserId, {withCredentials:true});
           const {firstName, lastName, photoUrl} = chatReceiver?.data;
           setChatMember(firstName + " " + lastName);
           setPhotoUrl(photoUrl);
   }
   
   const fetchMessages = async()=>{
-    const chat = await axios.get(BASE_URL + "/chat/" + targetUserId ,{withCredentials: true});
+    const chat = await axios.get(BASE_URL1 + "/chat/" + targetUserId ,{withCredentials: true});
     const chatMessages = chat?.data?.messages.map((msg)=>{
       const{senderId, text, createdAt} = msg;
       return{

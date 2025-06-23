@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { addUser } from '../utils/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../utils/constants';
+import { BASE_URL, BASE_URL1 } from '../utils/constants';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
 
   const handleSignUp = async () => {
     try {
-      const res = await axios.post(BASE_URL + "/signup", { firstName, lastName, emailId, password }, { withCredentials: true });
+      const res = await axios.post(BASE_URL1 + "/signup", { firstName, lastName, emailId, password }, { withCredentials: true });
       dispatch(addUser(res.data.data));
       navigate("/profile");
     } catch (err) {
@@ -37,7 +37,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(BASE_URL + "/login", { emailId, password }, { withCredentials: true });
+      const res = await axios.post(BASE_URL1 + "/login", { emailId, password }, { withCredentials: true });
       dispatch(addUser(res.data));
       navigate("/feed");
     } catch (err) {
