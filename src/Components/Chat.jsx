@@ -79,9 +79,12 @@ const Chat = () => {
   useEffect(()=>{
     if(!userId) return;
     const socket =  createSocketConnection();
+     console.log("socket connected");
+
     socket.emit("joinChat", {firstName, userId, targetUserId});
 
     socket.on("messageReceived", ({firstName, text, lastName})=>{
+       console.log("Message received:", { firstName, text });
       setMessages((messages)=>[...messages, {firstName, text, lastName}]);
     })
 
