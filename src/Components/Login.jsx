@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { addUser } from '../utils/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL, BASE_URL1 } from '../utils/constants';
+import { BASE_URL1 } from '../utils/constants';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
@@ -46,11 +46,11 @@ const Login = () => {
   };
 
   return (
-    <div className='flex justify-center items-center animate__animated animate__fadeIn h-screen'>
+    <div className="flex justify-center items-start min-h-screen mt-10 px-4 animate__animated animate__fadeIn">
       <div className={`w-full max-w-md sm:w-96 shadow-xl rounded-lg p-8 border border-gray-700
         ${mode ? "bg-neutral-800" : "bg-neutral-50"} 
         transition-colors duration-500`}>
-        
+
         <div className='text-center mb-4'>
           <h2 className={`text-2xl md:text-3xl font-bold 
             ${mode ? "text-white" : "text-gray-900"} 
