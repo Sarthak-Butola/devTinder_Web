@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BASE_URL, BASE_URL1, defaultUserPhoto } from '../utils/constants';
+import { BASE_URL1, defaultUserPhoto } from '../utils/constants';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,16 +21,15 @@ const ConnectionCard = ({ connection }) => {
   const { _id, firstName, lastName, age, gender, about, photoUrl } = connection;
 
   const handleConfirm = async () => {
-    try{
- const res = await axios.patch(
-      `${BASE_URL1}/chat/unfriend/${_id}`,
-      {},
-      { withCredentials: true }
-    );
-    // alert(res.data);
-    setShowConfirmation(false);
-    dispatch(removeConnections(_id));
-    }catch(err){
+    try {
+      await axios.patch(
+        `${BASE_URL1}/chat/unfriend/${_id}`,
+        {},
+        { withCredentials: true }
+      );
+      setShowConfirmation(false);
+      dispatch(removeConnections(_id));
+    } catch (err) {
       console.log(err);
     }
   };
@@ -60,49 +59,56 @@ const ConnectionCard = ({ connection }) => {
       <div className="p-4">
         <div
           className={`rounded-xl border border-gray-700 overflow-hidden transition duration-300 ease-in-out md:max-w-2xl mx-auto hover:scale-[1.01] ${
-            mode
-              ? 'bg-slate-950'
-              : 'bg-neutral-50 shadow-md shadow-slate-300'
+            mode ? 'bg-slate-950' : 'bg-neutral-50 shadow-md shadow-slate-300'
           }`}
         >
-          <div className="flex flex-col md:flex-row items-center p-4 gap-4">
+          <div className="flex items-center justify-between gap-4 p-4 flex-wrap sm:flex-nowrap">
             {/* Profile Image */}
             <div className="flex-shrink-0">
               <img
                 onClick={handleImageClick}
                 src={photoUrl || defaultUserPhoto}
                 alt={`${firstName} ${lastName}`}
-                className="w-24 h-24 rounded-full object-cover cursor-pointer border-2 border-gray-300 dark:border-slate-600"
+                className="w-20 h-20 rounded-full object-cover cursor-pointer border-2 border-gray-300 dark:border-slate-600"
               />
             </div>
 
             {/* User Info */}
-            <div className="flex-1 text-center md:text-left">
-              <h2 className={`text-lg font-semibold tracking-tight ${
-                mode ? 'text-white' : 'text-gray-900'
-              }`}>
+            <div className="flex-1 text-left min-w-[150px]">
+              <h2
+                className={`text-base font-semibold tracking-tight ${
+                  mode ? 'text-white' : 'text-gray-900'
+                }`}
+              >
                 {firstName} {lastName}
               </h2>
-              <p className={`text-sm ${
-                mode ? 'text-gray-400' : 'text-gray-600'
-              }`}>{`${age}, ${gender}`}</p>
-              <p className={`mt-1 text-sm leading-snug ${
-                mode ? 'text-gray-300' : 'text-gray-700'
-              }`}>
+              <p
+                className={`text-sm ${
+                  mode ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                {`${age}, ${gender}`}
+              </p>
+              {/* Hide about on small screens */}
+              <p
+                className={`mt-1 text-sm leading-snug ${
+                  mode ? 'text-gray-300' : 'text-gray-700'
+                } hidden sm:block`}
+              >
                 {about}
               </p>
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col gap-2 mt-2 md:mt-0">
+            {/* Buttons */}
+            <div className="flex flex-col gap-2 sm:items-end w-full sm:w-auto sm:flex-nowrap">
               <Link to={`/chat/${_id}`}>
-                <button className="btn btn-primary btn-sm hover:scale-105 transition">
+                <button className="btn btn-primary btn-sm w-full sm:w-auto hover:scale-105 transition">
                   Chat
                 </button>
               </Link>
               <button
                 onClick={handleClick}
-                className="btn btn-outline btn-sm hover:scale-105 transition"
+                className="btn btn-outline btn-sm w-full sm:w-auto hover:scale-105 transition"
               >
                 Unfriend
               </button>
