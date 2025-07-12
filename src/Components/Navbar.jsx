@@ -24,6 +24,7 @@ const Navbar = () => {
       await axios.post(BASE_URL1 + '/logout', {}, { withCredentials: true });
       dispatch(removeUser());
       dispatch(removeUsers());
+      // TODO: Add clearConnections() to connectionSlice and call it on logout
       navigate("/login");
     } catch (err) {
       console.log(err);
