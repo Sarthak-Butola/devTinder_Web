@@ -7,6 +7,8 @@ import { BASE_URL, BASE_URL1 } from '../utils/constants'
 import { removeUser } from '../utils/userSlice'
 import { changeMode } from '../utils/modeSlice'
 import { removeUsers } from '../utils/searchSlice'
+import { clearConnections } from '../utils/connectionSlice'
+import { clearRequests } from '../utils/requestSlice'
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,9 @@ const Navbar = () => {
       await axios.post(BASE_URL1 + '/logout', {}, { withCredentials: true });
       dispatch(removeUser());
       dispatch(removeUsers());
+      dispatch(clearConnections());
+      dispatch(clearRequests());
+
       // TODO: Add clearConnections() to connectionSlice and call it on logout
       navigate("/login");
     } catch (err) {
