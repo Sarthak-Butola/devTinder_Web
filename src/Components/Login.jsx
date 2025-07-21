@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { addUser } from '../utils/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -44,6 +44,23 @@ const Login = () => {
       setError(err?.response?.data);
     }
   };
+
+  useEffect(()=>{
+   const checkIfLoggedIn = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL1}/profile`, {
+          withCredentials: true, // ⬅️ sends cookies
+        });
+
+        if (res.status === 200) {
+          navigate("/feed");
+        }
+      } catch (err) {
+        //  console.log("User not logged in");
+      }
+    }
+    checkIfLoggedIn();
+  },[])
 
   return (
     <div className="flex justify-center items-start min-h-screen mt-10 px-4 animate__animated animate__fadeIn">
@@ -147,3 +164,5 @@ const Login = () => {
 };
 
 export default Login;
+
+

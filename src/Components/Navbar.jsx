@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL, BASE_URL1 } from '../utils/constants'
-import { removeUser } from '../utils/userSlice'
+import { addUser, removeUser } from '../utils/userSlice'
 import { changeMode } from '../utils/modeSlice'
 import { removeUsers } from '../utils/searchSlice'
 import { clearConnections } from '../utils/connectionSlice'
@@ -43,6 +43,28 @@ const Navbar = () => {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
+
+  const handleEmailToggle = async () => {
+  try {
+    const updatedPreference = !user?.emailNotifications;
+
+    const res = await axios.patch(
+      `${BASE_URL1}/profile/email-notifications`,
+      {
+        emailNotifications: updatedPreference,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+
+    // Update user in Redux
+    dispatch(addUser({ ...user, emailNotifications: updatedPreference }));
+  } catch (err) {
+    console.error("Failed to update email preference:", err);
+  }
+};
+
 
   return (
     <div className='pb-16'>
@@ -169,6 +191,21 @@ const Navbar = () => {
           ))}
 
           <li>
+            <label className="flex items-center cursor-pointer gap-2">
+            <span className={`text-sm font-medium ${mode ? 'text-slate-300' : 'text-gray-800'}`}>
+              Email Alerts
+            </span>
+            <input
+              type="checkbox"
+              checked={user?.emailNotifications}
+              onChange={handleEmailToggle}
+              className="toggle toggle-sm toggle-success"
+            />
+          </label>
+        </li>
+
+
+          <li>
             <Link
               to="/deleteProfile"
               className="text-red-500 py-2 px-4 rounded-md transition-transform duration-300 hover:bg-red-600 hover:text-white hover:scale-105"
@@ -190,6 +227,7 @@ const Navbar = () => {
               Logout
             </button>
           </li>
+
         </div>
       </div>
     </div>
